@@ -42,5 +42,6 @@ export function constructMetadata({
       creator: "@mbekinixon",
     },
     icons,
+    metadataBase: new URL("https://casecobra-theta-nine.vercel.app/"),
   };
 }

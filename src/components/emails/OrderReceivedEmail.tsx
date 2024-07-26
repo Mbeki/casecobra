@@ -1,4 +1,4 @@
-import React from "react";
+import { ShippingAddress } from "@prisma/client";
 import {
   Body,
   Column,
@@ -13,7 +13,6 @@ import {
   Section,
   Text,
 } from "@react-email/components";
-import { ShippingAddress } from "@prisma/client";
 
 const OrderReceivedEmail = ({
   shippingAddress,
@@ -26,13 +25,13 @@ const OrderReceivedEmail = ({
 }) => {
   const baseUrl =
     process.env.NODE_ENV === "development"
-      ? "htpp://localhost:3000"
-      : "https://casecobra-theta-nine.vercel.app";
+      ? "http://localhost:3000"
+      : "https://casecobra.vercel.app";
 
   return (
     <Html>
       <Head />
-      <Preview>Your order summary and estimated delivery dates</Preview>
+      <Preview>Your order summary and estimated delivery date</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
@@ -43,10 +42,10 @@ const OrderReceivedEmail = ({
               alt="delivery snake"
               style={{ margin: "auto" }}
             />
-            <Heading style={global.heading}>Thank your for your order</Heading>
+            <Heading style={global.heading}>Thank you for your order!</Heading>
             <Text style={global.text}>
               We're preparing everything for delivery and will notify you once
-              your package has been shipped. Delivery usually takes 2-3 days.
+              your package has been shipped. Delivery usually takes 2 days.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
               If you have any questions regarding your order, please feel free
@@ -55,26 +54,28 @@ const OrderReceivedEmail = ({
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Text style={addressTitle}>Shipping to {shippingAddress.name}</Text>
+            <Text style={adressTitle}>Shipping to: {shippingAddress.name}</Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
-              Shipping to {shippingAddress.street}, {shippingAddress.city},{" "}
-              {shippingAddress.state}, {shippingAddress.postalCode}
+              {shippingAddress.street}, {shippingAddress.city},{" "}
+              {shippingAddress.state} {shippingAddress.postalCode}
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
-            <Row style={{ display: "inline-flex", marginBottom: 40 }}>
+            <Row style={{ display: "inline-flex gap-16", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
                 <Text style={global.paragraphWithBold}>Order Number</Text>
                 <Text style={track.number}>{orderId}</Text>
               </Column>
-              <Column style={{ width: 170 }}>
+              <Column style={{ marginLeft: 20 }}>
                 <Text style={global.paragraphWithBold}>Order Date</Text>
                 <Text style={track.number}>{orderDate}</Text>
               </Column>
             </Row>
           </Section>
+
           <Hr style={global.hr} />
+
           <Section style={paddingY}>
             <Row>
               <Text
@@ -84,8 +85,8 @@ const OrderReceivedEmail = ({
                   paddingBottom: 30,
                 }}
               >
-                Please contact us if you have any question. (If you reply to
-                this email we won't be able to see it.)
+                Please contact us if you have any questions. (If you reply to
+                this email, we won't be able to see it.)
               </Text>
             </Row>
             <Row>
@@ -185,7 +186,7 @@ const message = {
   textAlign: "center",
 } as React.CSSProperties;
 
-const addressTitle = {
+const adressTitle = {
   ...paragraph,
   fontSize: "15px",
   fontWeight: "bold",
