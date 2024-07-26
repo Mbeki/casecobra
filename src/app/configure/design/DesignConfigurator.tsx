@@ -336,7 +336,7 @@ const DesignConfigurator = ({
                             <span className="flex items-center">
                               <span className="flex flex-col text-sm">
                                 <Label
-                                  as="span"
+                                  // as="span"
                                   className="font-medium text-gray-900 "
                                 >
                                   {option.label}
