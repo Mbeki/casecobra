@@ -29,7 +29,7 @@ const OrderReceivedEmail = ({
       : "https://casecobra.vercel.app";
 
   return (
-    <Html>
+    <Html lang="en">
       <Head />
       <Preview>Your order summary and estimated delivery date</Preview>
       <Body style={main}>
